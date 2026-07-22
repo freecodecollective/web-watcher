@@ -18,136 +18,122 @@
 html{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.5}
 body{min-height:100vh;padding:24px 16px 64px}
 a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
 input,select,button,textarea{font:inherit;color:inherit}
-
-.container{max-width:720px;margin:0 auto}
-
-/* Header */
-header{text-align:center;margin-bottom:32px}
+.container{max-width:760px;margin:0 auto}
+header{text-align:center;margin-bottom:28px}
 header h1{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;gap:10px}
-header h1 .eye{font-size:1.4em}
 header p{color:var(--dim);font-size:.88rem;margin-top:4px}
 
-/* Cards */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
-.card h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:14px;font-weight:600}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.card-header h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);font-weight:600;flex:1;margin:0}
 
-/* Form elements */
 label{display:block;font-size:.82rem;color:var(--dim);margin-bottom:5px;font-weight:500}
-input[type="text"],input[type="url"],input[type="number"],select,textarea{
+input[type="text"],input[type="url"],input[type="number"],input[type="email"],input[type="tel"],select,textarea{
   width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
   padding:10px 12px;font-size:.93rem;transition:border-color .15s;outline:none;
 }
 input:focus,select:focus,textarea:focus{border-color:var(--accent)}
-textarea{resize:vertical;font-family:var(--mono);font-size:.82rem;min-height:60px}
+textarea{resize:vertical;font-family:var(--mono);font-size:.82rem;min-height:50px}
 .row{display:flex;gap:12px;align-items:flex-end}
 .row>*{flex:1}
-.small-field{max-width:120px;flex:0 0 120px}
 
-/* Buttons */
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:10px 20px;border-radius:var(--radius-sm);font-weight:600;font-size:.93rem;
-  cursor:pointer;border:none;transition:all .15s;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:8px 16px;border-radius:var(--radius-sm);font-weight:600;font-size:.88rem;
+  cursor:pointer;border:none;transition:all .15s;white-space:nowrap;
 }
 .btn-primary{background:var(--accent);color:#0b0d14}
 .btn-primary:hover{filter:brightness(1.1)}
 .btn-danger{background:var(--danger);color:#fff}
 .btn-danger:hover{filter:brightness(1.1)}
-.btn-ghost{background:transparent;color:var(--dim);border:1px solid var(--border)}
+.btn-ghost{background:transparent;color:var(--dim);border:1px solid var(--border);padding:7px 12px}
 .btn-ghost:hover{border-color:var(--dim);color:var(--text)}
-.btn-sm{padding:6px 12px;font-size:.82rem}
+.btn-sm{padding:5px 10px;font-size:.78rem}
 .btn:disabled{opacity:.4;cursor:not-allowed}
-.full-width{width:100%}
 
-/* Status */
-.status-bar{
-  display:flex;align-items:center;gap:12px;padding:14px 18px;
-  border-radius:var(--radius-sm);font-size:.9rem;font-weight:500;
-  background:var(--surface);border:1px solid var(--border);margin-bottom:16px;
+/* Watch cards */
+.watch-card{
+  border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;
+  margin-bottom:8px;cursor:pointer;transition:border-color .15s;
 }
-.status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.status-dot.idle{background:var(--dim)}
-.status-dot.running{background:var(--accent);box-shadow:0 0 8px var(--accent)}
-.status-dot.error{background:var(--danger);box-shadow:0 0 8px var(--danger)}
-.status-dot.changed{background:var(--danger);box-shadow:0 0 12px var(--danger);animation:pulse 1s infinite}
+.watch-card:hover{border-color:#3a3f55}
+.watch-card.selected{border-color:var(--accent);background:var(--accent-bg)}
+.watch-top{display:flex;align-items:center;gap:10px}
+.watch-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.watch-dot.idle{background:var(--dim)}
+.watch-dot.running{background:var(--accent);box-shadow:0 0 6px var(--accent)}
+.watch-dot.error{background:var(--danger)}
+.watch-dot.changed{background:var(--danger);animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.status-text{flex:1}
-.status-countdown{color:var(--dim);font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:.85rem}
+.watch-info{flex:1;min-width:0}
+.watch-name{font-weight:600;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.watch-url{font-size:.78rem;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.watch-meta{font-size:.75rem;color:var(--dim);margin-top:6px;display:flex;gap:12px;flex-wrap:wrap}
+.watch-actions{display:flex;gap:4px;flex-shrink:0}
 
 /* Stats */
-.stats{display:flex;gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:16px}
-.stat{flex:1;background:var(--card);padding:12px;text-align:center}
-.stat-value{font-size:1.3rem;font-weight:700;font-variant-numeric:tabular-nums}
-.stat-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);margin-top:2px}
-.stat-value.changes{color:var(--danger)}
-.stat-value.errors{color:var(--warn)}
+.stats{display:flex;gap:1px;background:var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:12px}
+.stat{flex:1;background:var(--card);padding:10px;text-align:center}
+.stat-value{font-size:1.2rem;font-weight:700;font-variant-numeric:tabular-nums}
+.stat-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);margin-top:2px}
 
 /* Alert banner */
 .alert-banner{
-  display:none;padding:16px 20px;border-radius:var(--radius-sm);margin-bottom:16px;
-  font-weight:600;animation:slideIn .3s ease;
+  display:none;padding:14px 18px;border-radius:var(--radius-sm);margin-bottom:12px;
+  font-weight:600;font-size:.9rem;animation:slideIn .3s ease;
 }
-.alert-banner.show{display:flex;align-items:center;gap:12px}
+.alert-banner.show{display:flex;align-items:center;gap:10px}
 .alert-banner.change{background:var(--danger-bg);border:1px solid var(--danger);color:var(--danger)}
-.alert-banner.info{background:var(--accent-bg);border:1px solid var(--accent);color:var(--accent)}
-.alert-banner .dismiss{margin-left:auto;cursor:pointer;opacity:.6}
-.alert-banner .dismiss:hover{opacity:1}
 @keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 
 /* History */
-.history-list{max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.history-list{max-height:350px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .history-entry{
-  display:flex;align-items:center;gap:10px;padding:9px 14px;
-  border-bottom:1px solid var(--border);font-size:.85rem;
+  display:flex;align-items:center;gap:8px;padding:7px 12px;
+  border-bottom:1px solid var(--border);font-size:.82rem;
 }
 .history-entry:last-child{border-bottom:none}
-.history-entry .time{color:var(--dim);font-family:var(--mono);font-size:.78rem;flex-shrink:0;min-width:72px}
-.history-entry .icon{flex-shrink:0;width:18px;text-align:center}
-.history-entry .msg{flex:1;min-width:0}
-.history-entry .hash{color:var(--dim);font-family:var(--mono);font-size:.75rem;flex-shrink:0}
+.history-entry .time{color:var(--dim);font-family:var(--mono);font-size:.75rem;flex-shrink:0;min-width:68px}
+.history-entry .icon{flex-shrink:0;width:16px;text-align:center;font-size:.85rem}
+.history-entry .msg{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.history-entry .hash{color:var(--dim);font-family:var(--mono);font-size:.72rem;flex-shrink:0}
 .history-entry.changed{background:var(--danger-bg)}
 .history-entry.error{color:var(--warn)}
-.empty-state{text-align:center;color:var(--dim);padding:32px;font-size:.88rem}
+.empty-state{text-align:center;color:var(--dim);padding:28px;font-size:.88rem}
 
-/* Diff modal */
-.modal-overlay{
-  display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;
-  align-items:center;justify-content:center;padding:24px;
-}
+/* Modals */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex}
-.modal{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-  max-width:700px;width:100%;max-height:80vh;display:flex;flex-direction:column;
-}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);max-width:560px;width:100%;max-height:85vh;display:flex;flex-direction:column}
 .modal-header{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
-.modal-header h3{flex:1;font-size:1rem}
+.modal-header h3{flex:1;font-size:1rem;margin:0}
 .modal-body{padding:20px;overflow-y:auto;flex:1}
-.modal-body pre{
-  white-space:pre-wrap;word-break:break-word;font-family:var(--mono);
-  font-size:.78rem;line-height:1.6;color:var(--dim);
-}
+.modal-body .field{margin-bottom:14px}
+.modal-footer{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+
+/* Diff */
+.modal-body pre{white-space:pre-wrap;word-break:break-word;font-family:var(--mono);font-size:.78rem;line-height:1.6;color:var(--dim)}
 .diff-added{background:#22c55e20;color:var(--success)}
 .diff-removed{background:#f43f5e20;color:var(--danger);text-decoration:line-through}
 
-/* Proxy status */
-.proxy-indicator{font-size:.78rem;color:var(--dim);margin-top:8px;display:flex;align-items:center;gap:6px}
-.proxy-indicator .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
-.proxy-indicator .dot.ok{background:var(--success)}
-.proxy-indicator .dot.fail{background:var(--danger)}
-.proxy-indicator .dot.trying{background:var(--warn)}
+/* Notification badge */
+.notif-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.notif-row label{margin:0;flex:1}
+.notif-row input[type="checkbox"]{width:auto;accent-color:var(--accent)}
+.notif-status{font-size:.75rem;padding:2px 8px;border-radius:10px;font-weight:600}
+.notif-status.ok{background:#22c55e30;color:var(--success)}
+.notif-status.missing{background:#f59e0b30;color:var(--warn)}
 
-/* Collapsible */
-details{margin-top:8px}
+details{margin-top:6px}
 details summary{cursor:pointer;font-size:.82rem;color:var(--dim);user-select:none}
 details summary:hover{color:var(--text)}
 details[open] summary{margin-bottom:10px}
 
-/* Responsive */
 @media(max-width:540px){
   .row{flex-direction:column}
-  .small-field{max-width:none;flex:1}
+  .watch-top{flex-wrap:wrap}
+  .watch-actions{width:100%;justify-content:flex-end;margin-top:6px}
   .stats{flex-wrap:wrap}
   .stat{flex-basis:calc(50% - 1px)}
 }
@@ -156,127 +142,162 @@ details[open] summary{margin-bottom:10px}
 <body>
 <div class="container">
   <header>
-    <h1><span class="eye">👁</span> Web Watcher</h1>
-    <p>Monitor any URL for changes — right from your browser</p>
+    <h1><span style="font-size:1.3em">👁</span> Web Watcher</h1>
+    <p>Monitor URLs for changes — right from your browser</p>
   </header>
 
-  <!-- Config -->
-  <div class="card" id="config-card">
-    <h2>Monitor</h2>
-    <div style="margin-bottom:12px">
-      <label for="url-input">URL to watch</label>
-      <input type="url" id="url-input" placeholder="https://example.com/page-to-watch" spellcheck="false">
-    </div>
-    <div class="row" style="margin-bottom:12px">
-      <div class="small-field">
-        <label for="interval-select">Check every</label>
-        <select id="interval-select">
-          <option value="10">10 seconds</option>
-          <option value="30" selected>30 seconds</option>
-          <option value="60">1 minute</option>
-          <option value="300">5 minutes</option>
-          <option value="custom">Custom…</option>
-        </select>
-      </div>
-      <div class="small-field" id="custom-interval-wrap" style="display:none">
-        <label for="custom-interval">Seconds</label>
-        <input type="number" id="custom-interval" min="5" max="86400" value="30">
-      </div>
-      <div>
-        <label for="mode-select">Compare mode</label>
-        <select id="mode-select">
-          <option value="text">Text content</option>
-          <option value="full">Full HTML</option>
-          <option value="keyword">Keyword watch</option>
-        </select>
-      </div>
-    </div>
-    <div id="keyword-wrap" style="display:none;margin-bottom:12px">
-      <label for="keyword-input">Keywords (one per line)</label>
-      <textarea id="keyword-input" placeholder="sold out&#10;coming soon&#10;available"></textarea>
-    </div>
-    <details>
-      <summary>Advanced options</summary>
-      <div style="margin-bottom:10px">
-        <label for="selector-input">CSS selector (optional — monitor only matching elements)</label>
-        <input type="text" id="selector-input" placeholder="e.g. .showtimes, #main-content, article">
-      </div>
-      <div>
-        <label for="proxy-select">CORS proxy</label>
-        <select id="proxy-select">
-          <option value="auto">Auto-detect best proxy</option>
-          <option value="allorigins">AllOrigins</option>
-          <option value="corsproxy">CORSProxy.io</option>
-          <option value="corsanywhere">CORS Anywhere</option>
-          <option value="direct">Direct (CORS-enabled URLs only)</option>
-        </select>
-      </div>
-    </details>
-    <div style="margin-top:16px">
-      <button class="btn btn-primary full-width" id="start-btn">
-        <span id="start-btn-icon">▶</span>
-        <span id="start-btn-text">Start Monitoring</span>
-      </button>
-    </div>
-    <div class="proxy-indicator" id="proxy-status" style="display:none">
-      <span class="dot" id="proxy-dot"></span>
-      <span id="proxy-label"></span>
-    </div>
-  </div>
-
-  <!-- Alert banner -->
-  <div class="alert-banner" id="alert-banner">
-    <span id="alert-icon">🔔</span>
-    <span id="alert-msg"></span>
-    <span class="dismiss" id="alert-dismiss">✕</span>
-  </div>
-
-  <!-- Status -->
-  <div class="status-bar" id="status-bar" style="display:none">
-    <div class="status-dot" id="status-dot"></div>
-    <span class="status-text" id="status-text">Idle</span>
-    <span class="status-countdown" id="countdown"></span>
-  </div>
-
-  <!-- Stats -->
-  <div class="stats" id="stats-bar" style="display:none">
-    <div class="stat"><div class="stat-value" id="stat-checks">0</div><div class="stat-label">Checks</div></div>
-    <div class="stat"><div class="stat-value changes" id="stat-changes">0</div><div class="stat-label">Changes</div></div>
-    <div class="stat"><div class="stat-value errors" id="stat-errors">0</div><div class="stat-label">Errors</div></div>
-    <div class="stat"><div class="stat-value" id="stat-uptime">—</div><div class="stat-label">Uptime</div></div>
-  </div>
-
-  <!-- History -->
-  <div class="card" id="history-card" style="display:none">
-    <div style="display:flex;align-items:center;margin-bottom:14px">
-      <h2 style="margin-bottom:0;flex:1">History</h2>
-      <button class="btn btn-ghost btn-sm" id="clear-history-btn">Clear</button>
-    </div>
-    <div class="history-list" id="history-list">
-      <div class="empty-state">No checks yet</div>
-    </div>
-  </div>
-
-  <!-- How it works -->
-  <div class="card" style="background:transparent;border:none;padding:0;margin-top:24px">
-    <details>
-      <summary style="font-size:.88rem;font-weight:600;color:var(--text)">How it works</summary>
-      <div style="color:var(--dim);font-size:.84rem;line-height:1.7;margin-top:4px">
-        <p>Web Watcher fetches the target URL through a CORS proxy, extracts comparable content, and hashes it. Each subsequent fetch is compared against the previous hash — if it changes, you get an <strong>audio alert</strong>, <strong>browser notification</strong>, and <strong>flashing tab title</strong>.</p>
-        <p style="margin-top:8px"><strong>Tips:</strong></p>
-        <ul style="padding-left:18px;margin-top:4px">
-          <li>Use <em>Text content</em> mode to ignore HTML noise (ad scripts, session tokens).</li>
-          <li>A CSS selector lets you focus on one part of the page — e.g. <code>.showtimes</code>.</li>
-          <li><em>Keyword watch</em> mode alerts you only when specific words appear or disappear.</li>
-          <li>Keep this tab open (pinned is fine). A background Web Worker keeps the timer accurate.</li>
-        </ul>
-        <p style="margin-top:8px"><strong>Limitations:</strong> Sites behind heavy bot protection (Cloudflare challenges, CAPTCHAs) may not be fetchable through free CORS proxies. If all proxies fail, try a different proxy from the Advanced options.</p>
+  <!-- Notification Settings -->
+  <div class="card" id="notif-card">
+    <details id="notif-details">
+      <summary style="font-size:.88rem;font-weight:600;color:var(--text)">Notification Settings</summary>
+      <div style="margin-top:14px">
+        <div class="notif-row">
+          <input type="checkbox" id="notif-email-on">
+          <label for="notif-email-on" style="font-size:.88rem;color:var(--text)">Email notifications</label>
+        </div>
+        <div class="field" style="margin-bottom:14px">
+          <input type="email" id="notif-email" placeholder="you@example.com">
+        </div>
+        <div class="notif-row">
+          <input type="checkbox" id="notif-sms-on">
+          <label for="notif-sms-on" style="font-size:.88rem;color:var(--text)">Text message (SMS via email)</label>
+        </div>
+        <div class="row" style="margin-bottom:14px">
+          <div><input type="tel" id="notif-phone" placeholder="4155551234"></div>
+          <div>
+            <select id="notif-carrier">
+              <option value="txt.att.net">AT&T</option>
+              <option value="tmomail.net">T-Mobile</option>
+              <option value="vtext.com">Verizon</option>
+              <option value="messaging.sprintpcs.com">Sprint</option>
+              <option value="email.uscc.net">US Cellular</option>
+              <option value="custom">Custom gateway…</option>
+            </select>
+          </div>
+        </div>
+        <div id="custom-gateway-wrap" style="display:none;margin-bottom:14px">
+          <label for="notif-custom-gateway">Custom SMS gateway domain</label>
+          <input type="text" id="notif-custom-gateway" placeholder="txt.att.net">
+        </div>
+        <details style="margin-bottom:14px">
+          <summary>EmailJS setup (required for email/SMS)</summary>
+          <p style="font-size:.8rem;color:var(--dim);margin-bottom:10px;line-height:1.6">
+            Free account at <a href="https://www.emailjs.com" target="_blank">emailjs.com</a> (200 emails/mo).
+            Connect your Gmail, create a template with variables
+            <code style="background:var(--surface);padding:1px 5px;border-radius:3px;font-size:.78rem">{{to_email}}</code>,
+            <code style="background:var(--surface);padding:1px 5px;border-radius:3px;font-size:.78rem">{{subject}}</code>,
+            <code style="background:var(--surface);padding:1px 5px;border-radius:3px;font-size:.78rem">{{message}}</code>,
+            then paste the IDs below.
+          </p>
+          <div class="field"><label>Service ID</label><input type="text" id="ejs-service" placeholder="service_xxxxxxx"></div>
+          <div class="field"><label>Template ID</label><input type="text" id="ejs-template" placeholder="template_xxxxxxx"></div>
+          <div class="field"><label>Public Key</label><input type="text" id="ejs-pubkey" placeholder="your_public_key"></div>
+        </details>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-ghost btn-sm" id="notif-save-btn">Save settings</button>
+          <button class="btn btn-ghost btn-sm" id="notif-test-btn">Send test</button>
+          <span id="notif-msg" style="font-size:.8rem;color:var(--dim);align-self:center"></span>
+        </div>
       </div>
     </details>
+  </div>
+
+  <!-- Watch List -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Watches</h2>
+      <button class="btn btn-primary btn-sm" id="add-watch-btn">+ Add Watch</button>
+    </div>
+    <div id="watch-list"><div class="empty-state">No watches yet</div></div>
+  </div>
+
+  <!-- Watch Detail (shown when watch selected) -->
+  <div id="detail-section" style="display:none">
+    <div class="alert-banner" id="alert-banner">
+      <span id="alert-msg"></span>
+      <span style="margin-left:auto;cursor:pointer" id="alert-dismiss">✕</span>
+    </div>
+    <div class="stats" id="stats-bar">
+      <div class="stat"><div class="stat-value" id="s-checks">0</div><div class="stat-label">Checks</div></div>
+      <div class="stat"><div class="stat-value" id="s-changes" style="color:var(--danger)">0</div><div class="stat-label">Changes</div></div>
+      <div class="stat"><div class="stat-value" id="s-errors" style="color:var(--warn)">0</div><div class="stat-label">Errors</div></div>
+      <div class="stat"><div class="stat-value" id="s-uptime">—</div><div class="stat-label">Uptime</div></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>History</h2>
+        <button class="btn btn-ghost btn-sm" id="clear-history-btn">Clear</button>
+      </div>
+      <div class="history-list" id="history-list"><div class="empty-state">No checks yet</div></div>
+    </div>
   </div>
 </div>
 
-<!-- Diff modal -->
+<!-- Add/Edit Watch Modal -->
+<div class="modal-overlay" id="watch-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="watch-modal-title">Add Watch</h3>
+      <button class="btn btn-ghost btn-sm" id="wm-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label>Name (optional)</label>
+        <input type="text" id="wm-name" placeholder="e.g. AMC Showtimes">
+      </div>
+      <div class="field">
+        <label>URL</label>
+        <input type="url" id="wm-url" placeholder="https://example.com/page-to-watch">
+      </div>
+      <div class="row field">
+        <div>
+          <label>Check every</label>
+          <select id="wm-interval">
+            <option value="10">10 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="60">1 minute</option>
+            <option value="300">5 minutes</option>
+          </select>
+        </div>
+        <div>
+          <label>Compare mode</label>
+          <select id="wm-mode">
+            <option value="text">Text content</option>
+            <option value="full">Full HTML</option>
+            <option value="keyword">Keyword watch</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" id="wm-kw-wrap" style="display:none">
+        <label>Keywords (one per line)</label>
+        <textarea id="wm-keywords" placeholder="sold out&#10;coming soon"></textarea>
+      </div>
+      <details>
+        <summary>Advanced</summary>
+        <div class="field" style="margin-top:10px">
+          <label>CSS selector (monitor only matching elements)</label>
+          <input type="text" id="wm-selector" placeholder=".showtimes, #main-content">
+        </div>
+        <div class="field">
+          <label>CORS proxy</label>
+          <select id="wm-proxy">
+            <option value="auto">Auto-detect</option>
+            <option value="jina">Jina Reader (best for protected sites)</option>
+            <option value="allorigins">AllOrigins</option>
+            <option value="corsproxy">CORSProxy.io</option>
+            <option value="direct">Direct (CORS-enabled only)</option>
+          </select>
+        </div>
+      </details>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="wm-cancel">Cancel</button>
+      <button class="btn btn-primary" id="wm-save">Add Watch</button>
+    </div>
+  </div>
+</div>
+
+<!-- Diff Modal -->
 <div class="modal-overlay" id="diff-modal">
   <div class="modal">
     <div class="modal-header">
@@ -284,10 +305,10 @@ details[open] summary{margin-bottom:10px}
       <button class="btn btn-ghost btn-sm" id="diff-close">✕</button>
     </div>
     <div class="modal-body">
-      <div style="display:flex;gap:8px;margin-bottom:12px">
-        <button class="btn btn-ghost btn-sm active" id="diff-tab-new">New content</button>
-        <button class="btn btn-ghost btn-sm" id="diff-tab-old">Previous content</button>
-        <button class="btn btn-ghost btn-sm" id="diff-tab-diff">Diff</button>
+      <div style="display:flex;gap:6px;margin-bottom:12px">
+        <button class="btn btn-ghost btn-sm" data-diff="new">New</button>
+        <button class="btn btn-ghost btn-sm" data-diff="old">Previous</button>
+        <button class="btn btn-ghost btn-sm" data-diff="diff">Diff</button>
       </div>
       <pre id="diff-content"></pre>
     </div>
@@ -295,21 +316,23 @@ details[open] summary{margin-bottom:10px}
 </div>
 
 <script>
-// ── Proxies ──────────────────────────────────────────────
+// ── CORS Proxies ─────────────────────────────────────────
 const PROXIES = {
+  jina: {
+    name: 'Jina Reader',
+    build: u => `https://r.jina.ai/${u}`,
+    headers: { 'X-Return-Format': 'text', Accept: 'text/plain' },
+    extract: r => r.text(),
+    returnsText: true,
+  },
   allorigins: {
     name: 'AllOrigins',
-    build: u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}&timestamp=${Date.now()}`,
-    extract: async r => { const d = await r.json(); return d.contents; },
+    build: u => `https://api.allorigins.win/get?url=${encodeURIComponent(u)}&t=${Date.now()}`,
+    extract: async r => (await r.json()).contents,
   },
   corsproxy: {
     name: 'CORSProxy.io',
     build: u => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
-    extract: r => r.text(),
-  },
-  corsanywhere: {
-    name: 'CORS Anywhere',
-    build: u => `https://cors-anywhere.herokuapp.com/${u}`,
     extract: r => r.text(),
   },
   direct: {
@@ -318,519 +341,519 @@ const PROXIES = {
     extract: r => r.text(),
   },
 };
-const PROXY_ORDER = ['allorigins', 'corsproxy', 'corsanywhere', 'direct'];
+const PROXY_ORDER = ['jina', 'allorigins', 'corsproxy', 'direct'];
 
-// ── State ────────────────────────────────────────────────
-const state = {
-  url: '',
-  interval: 30,
-  mode: 'text',
-  keywords: '',
-  selector: '',
-  proxyChoice: 'auto',
-  running: false,
-  lastHash: null,
-  lastContent: null,
-  prevContent: null,
-  checks: 0,
-  changes: 0,
-  errors: 0,
-  consecutiveErrors: 0,
-  history: [],
-  startedAt: null,
-  workingProxy: null,
-};
+// ── Data (persisted) ─────────────────────────────────────
+const STORE_KEY = 'webwatcher';
+let data = { watches: [], notif: { emailOn: false, smsOn: false, email: '', phone: '4154252515', carrier: 'txt.att.net', customGateway: '', ejs: { service: '', template: '', pubkey: '' } } };
 
-// ── DOM ──────────────────────────────────────────────────
-const $ = id => document.getElementById(id);
-const el = {
-  url: $('url-input'), intervalSel: $('interval-select'), customWrap: $('custom-interval-wrap'),
-  customInterval: $('custom-interval'), modeSel: $('mode-select'), keywordWrap: $('keyword-wrap'),
-  keywordInput: $('keyword-input'), selectorInput: $('selector-input'), proxySel: $('proxy-select'),
-  startBtn: $('start-btn'), startIcon: $('start-btn-icon'), startText: $('start-btn-text'),
-  statusBar: $('status-bar'), statusDot: $('status-dot'), statusText: $('status-text'),
-  countdown: $('countdown'), statsBar: $('stats-bar'), statChecks: $('stat-checks'),
-  statChanges: $('stat-changes'), statErrors: $('stat-errors'), statUptime: $('stat-uptime'),
-  historyCard: $('history-card'), historyList: $('history-list'), clearHistoryBtn: $('clear-history-btn'),
-  alertBanner: $('alert-banner'), alertIcon: $('alert-icon'), alertMsg: $('alert-msg'),
-  alertDismiss: $('alert-dismiss'), proxyStatus: $('proxy-status'), proxyDot: $('proxy-dot'),
-  proxyLabel: $('proxy-label'), diffModal: $('diff-modal'), diffClose: $('diff-close'),
-  diffContent: $('diff-content'),
-};
-
-// ── Timer worker (accurate in background tabs) ──────────
-let timerWorker = null;
-let lastCheckTime = 0;
-let countdownRaf = null;
-
-function createTimerWorker() {
-  const code = `
-    let id = null;
-    self.onmessage = e => {
-      clearInterval(id);
-      if (e.data.cmd === 'start') id = setInterval(() => self.postMessage('tick'), e.data.ms);
-    };
-  `;
-  const blob = new Blob([code], { type: 'application/javascript' });
-  timerWorker = new Worker(URL.createObjectURL(blob));
-  timerWorker.onmessage = () => runCheck();
-}
-
-// ── Audio alert (Web Audio API — no external files) ─────
-let audioCtx = null;
-function playAlert() {
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch {} }
+function load() {
   try {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const now = audioCtx.currentTime;
-    // Three ascending tones
-    [880, 1100, 1320].forEach((freq, i) => {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.frequency.value = freq;
-      osc.type = 'sine';
-      const t = now + i * 0.15;
-      gain.gain.setValueAtTime(0, t);
-      gain.gain.linearRampToValueAtTime(0.25, t + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
-      osc.start(t);
-      osc.stop(t + 0.25);
-    });
-  } catch (e) { /* audio not available */ }
+    const s = JSON.parse(localStorage.getItem(STORE_KEY));
+    if (s) { data = { ...data, ...s, notif: { ...data.notif, ...s.notif, ejs: { ...data.notif.ejs, ...(s.notif?.ejs || {}) } } }; }
+  } catch {}
 }
 
-// ── Browser notifications ───────────────────────────────
-async function sendNotification(title, body) {
-  if (!('Notification' in window)) return;
-  if (Notification.permission === 'default') await Notification.requestPermission();
-  if (Notification.permission === 'granted') {
-    new Notification(title, { body, icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">👁</text></svg>' });
-  }
+// ── Runtime state (per watch, not persisted) ─────────────
+const rt = new Map();
+function getRT(id) {
+  if (!rt.has(id)) rt.set(id, { running: false, lastHash: null, lastContent: null, prevContent: null, checks: 0, changes: 0, errors: 0, consErrors: 0, history: [], startedAt: null, workingProxy: null, lastFetchText: false });
+  return rt.get(id);
 }
 
-// ── Tab title flash ─────────────────────────────────────
-let titleFlashInterval = null;
-const ORIGINAL_TITLE = document.title;
-function flashTitle(msg) {
-  stopTitleFlash();
-  let on = true;
-  titleFlashInterval = setInterval(() => {
-    document.title = on ? `⚠ ${msg}` : ORIGINAL_TITLE;
-    on = !on;
-  }, 800);
+// ── Timer Web Worker ─────────────────────────────────────
+let worker;
+function initWorker() {
+  const code = `const ts=new Map();self.onmessage=e=>{const{cmd,id,ms}=e.data;if(cmd==='start'){clearInterval(ts.get(id));ts.set(id,setInterval(()=>self.postMessage(id),ms));}if(cmd==='stop'){clearInterval(ts.get(id));ts.delete(id);}};`;
+  worker = new Worker(URL.createObjectURL(new Blob([code], { type: 'application/javascript' })));
+  worker.onmessage = e => runCheck(e.data);
 }
-function stopTitleFlash() {
-  clearInterval(titleFlashInterval);
-  titleFlashInterval = null;
-  document.title = ORIGINAL_TITLE;
-}
+initWorker();
 
-// ── Content processing ──────────────────────────────────
-function extractText(html, selector) {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  doc.querySelectorAll('script, style, noscript, link, meta').forEach(n => n.remove());
-  let root = doc.body;
-  if (selector) {
-    const matches = doc.querySelectorAll(selector);
-    if (matches.length) {
-      root = doc.createElement('div');
-      matches.forEach(m => root.appendChild(m.cloneNode(true)));
-    }
-  }
-  return root.textContent.replace(/\s+/g, ' ').trim();
-}
+// ── Helpers ──────────────────────────────────────────────
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function genId() { return 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function truncUrl(u, n = 55) { return u.length > n ? u.slice(0, n) + '…' : u; }
+function fmtInterval(s) { return s < 60 ? s + 's' : s < 3600 ? Math.floor(s / 60) + 'm' : Math.floor(s / 3600) + 'h'; }
 
-function extractHtml(html, selector) {
-  if (!selector) return html;
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  const matches = doc.querySelectorAll(selector);
-  return Array.from(matches).map(m => m.outerHTML).join('\n');
-}
-
-function processContent(html) {
-  const sel = state.selector.trim();
-  if (state.mode === 'full') return extractHtml(html, sel);
-  return extractText(html, sel);
-}
-
-async function hashContent(text) {
-  const data = new TextEncoder().encode(text);
-  const buf = await crypto.subtle.digest('SHA-256', data);
+async function hashText(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// ── Keyword matching ────────────────────────────────────
-function checkKeywords(content) {
-  const words = state.keywords.split('\n').map(w => w.trim().toLowerCase()).filter(Boolean);
-  if (!words.length) return { found: [], missing: [] };
-  const lower = content.toLowerCase();
-  const found = words.filter(w => lower.includes(w));
-  const missing = words.filter(w => !lower.includes(w));
-  return { found, missing };
+function extractText(html, sel) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  doc.querySelectorAll('script,style,noscript,link,meta').forEach(n => n.remove());
+  let root = doc.body;
+  if (sel) { const m = doc.querySelectorAll(sel); if (m.length) { root = doc.createElement('div'); m.forEach(n => root.appendChild(n.cloneNode(true))); } }
+  return root.textContent.replace(/\s+/g, ' ').trim();
 }
 
-// ── Fetch via proxy ─────────────────────────────────────
-async function fetchViaProxy(url, proxyKey) {
-  const proxy = PROXIES[proxyKey];
-  if (!proxy) throw new Error(`Unknown proxy: ${proxyKey}`);
-  const fetchUrl = proxy.build(url);
-  const resp = await fetch(fetchUrl, {
-    signal: AbortSignal.timeout(45000),
-    headers: { 'Accept': 'text/html,application/xhtml+xml,*/*' },
-  });
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  const content = await proxy.extract(resp);
-  if (!content || content.length < 20) throw new Error('Empty or too-short response');
-  return content;
-}
-
-async function fetchContent(url) {
-  const choice = state.proxyChoice;
-  if (choice !== 'auto') {
-    const html = await fetchViaProxy(url, choice);
-    state.workingProxy = choice;
-    showProxyStatus(choice, 'ok');
-    return html;
+function processContent(html, watch, isText) {
+  if (isText) return html.replace(/\s+/g, ' ').trim();
+  const sel = (watch.selector || '').trim();
+  if (watch.mode === 'full') {
+    if (!sel) return html;
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return Array.from(doc.querySelectorAll(sel)).map(m => m.outerHTML).join('\n');
   }
-  // Auto-detect: try the last working proxy first, then all others
-  const order = state.workingProxy
-    ? [state.workingProxy, ...PROXY_ORDER.filter(p => p !== state.workingProxy)]
-    : [...PROXY_ORDER];
+  return extractText(html, sel);
+}
+
+// ── Fetch via proxy ──────────────────────────────────────
+async function fetchProxy(url, proxyKey) {
+  const p = PROXIES[proxyKey];
+  if (!p) throw new Error('Unknown proxy');
+  const headers = p.headers || { Accept: 'text/html,*/*' };
+  const resp = await fetch(p.build(url), { signal: AbortSignal.timeout(50000), headers });
+  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+  const content = await p.extract(resp);
+  if (!content || content.length < 15) throw new Error('Empty response');
+  return { content, isText: !!p.returnsText };
+}
+
+async function fetchContent(url, r) {
+  const choice = data.watches.find(w => getRT(w.id) === r)?.proxyChoice || 'auto';
+  if (choice !== 'auto') {
+    const res = await fetchProxy(url, choice);
+    r.workingProxy = choice;
+    return res;
+  }
+  const order = r.workingProxy ? [r.workingProxy, ...PROXY_ORDER.filter(k => k !== r.workingProxy)] : [...PROXY_ORDER];
   let lastErr;
   for (const key of order) {
-    showProxyStatus(key, 'trying');
-    try {
-      const html = await fetchViaProxy(url, key);
-      state.workingProxy = key;
-      showProxyStatus(key, 'ok');
-      return html;
-    } catch (e) {
-      lastErr = e;
-      showProxyStatus(key, 'fail');
-    }
+    try { const res = await fetchProxy(url, key); r.workingProxy = key; return res; }
+    catch (e) { lastErr = e; }
   }
-  state.workingProxy = null;
-  throw new Error(`All proxies failed. Last error: ${lastErr?.message || 'unknown'}`);
+  r.workingProxy = null;
+  throw new Error(`All proxies failed: ${lastErr?.message || 'unknown'}`);
 }
 
 // ── Run a single check ──────────────────────────────────
-async function runCheck() {
-  if (!state.running) return;
-  lastCheckTime = Date.now();
-  setStatus('running', 'Checking…');
+async function runCheck(watchId) {
+  const watch = data.watches.find(w => w.id === watchId);
+  const r = getRT(watchId);
+  if (!watch || !r.running) return;
 
   try {
-    const html = await fetchContent(state.url);
-    const processed = processContent(html);
-    const hash = await hashContent(processed);
-    state.checks++;
-    state.consecutiveErrors = 0;
+    const { content: raw, isText } = await fetchContent(watch.url, r);
+    const processed = processContent(raw, watch, isText);
+    const hash = await hashText(processed);
+    r.checks++;
+    r.consErrors = 0;
 
-    if (state.mode === 'keyword') {
-      const kw = checkKeywords(processed);
-      const prevKw = state.lastContent ? checkKeywords(state.lastContent) : null;
+    if (watch.mode === 'keyword') {
+      const kws = (watch.keywords || '').split('\n').map(w => w.trim().toLowerCase()).filter(Boolean);
+      const lower = processed.toLowerCase();
+      const found = kws.filter(w => lower.includes(w));
+      const prevFound = r.lastContent ? kws.filter(w => r.lastContent.toLowerCase().includes(w)) : null;
 
-      if (state.lastHash === null) {
-        state.lastHash = hash;
-        state.lastContent = processed;
-        const label = kw.found.length
-          ? `Baseline — found: ${kw.found.join(', ')}`
-          : `Baseline — keywords not found`;
-        addHistory('baseline', label, hash);
-      } else if (prevKw && (kw.found.join(',') !== prevKw.found.join(','))) {
-        state.changes++;
-        const appeared = kw.found.filter(w => !prevKw.found.includes(w));
-        const disappeared = prevKw.found.filter(w => !kw.found.includes(w));
+      if (r.lastHash === null) {
+        r.lastHash = hash; r.lastContent = processed;
+        addHist(r, 'baseline', found.length ? `Baseline — found: ${found.join(', ')}` : 'Baseline — keywords not found', hash);
+      } else if (prevFound && found.join(',') !== prevFound.join(',')) {
+        r.changes++;
+        const appeared = found.filter(w => !prevFound.includes(w));
+        const disappeared = prevFound.filter(w => !found.includes(w));
         let msg = 'Keywords changed';
-        if (appeared.length) msg += ` — appeared: ${appeared.join(', ')}`;
-        if (disappeared.length) msg += ` — gone: ${disappeared.join(', ')}`;
-        state.prevContent = state.lastContent;
-        state.lastHash = hash;
-        state.lastContent = processed;
-        addHistory('changed', msg, hash);
-        triggerAlerts(msg);
+        if (appeared.length) msg += ` +${appeared.join(',')}`;
+        if (disappeared.length) msg += ` -${disappeared.join(',')}`;
+        r.prevContent = r.lastContent; r.lastHash = hash; r.lastContent = processed;
+        addHist(r, 'changed', msg, hash);
+        fireAlerts(watch, msg, r);
       } else {
-        state.lastHash = hash;
-        state.lastContent = processed;
-        addHistory('ok', `No keyword change (${kw.found.length} found)`, hash);
+        r.lastHash = hash; r.lastContent = processed;
+        addHist(r, 'ok', `No keyword change (${found.length} found)`, hash);
       }
     } else {
-      if (state.lastHash === null) {
-        state.lastHash = hash;
-        state.lastContent = processed;
-        addHistory('baseline', 'Baseline snapshot captured', hash);
-      } else if (hash !== state.lastHash) {
-        state.changes++;
-        state.prevContent = state.lastContent;
-        state.lastHash = hash;
-        state.lastContent = processed;
-        addHistory('changed', 'Content changed!', hash);
-        triggerAlerts('Page content has changed!');
+      if (r.lastHash === null) {
+        r.lastHash = hash; r.lastContent = processed;
+        addHist(r, 'baseline', 'Baseline captured', hash);
+      } else if (hash !== r.lastHash) {
+        r.changes++;
+        r.prevContent = r.lastContent; r.lastHash = hash; r.lastContent = processed;
+        addHist(r, 'changed', 'Content changed!', hash);
+        fireAlerts(watch, 'Content changed!', r);
       } else {
-        addHistory('ok', 'No change', hash);
+        addHist(r, 'ok', 'No change', hash);
       }
     }
-
-    setStatus('running', 'Monitoring');
   } catch (e) {
-    state.errors++;
-    state.consecutiveErrors++;
-    addHistory('error', e.message, null);
-
-    if (state.consecutiveErrors >= 5) {
-      setStatus('error', `${state.consecutiveErrors} consecutive errors`);
-    } else {
-      setStatus('running', 'Monitoring (last check errored)');
-    }
+    r.errors++; r.consErrors++;
+    addHist(r, 'error', e.message, null);
   }
+  renderAll();
+}
 
-  updateStats();
-  saveState();
+function addHist(r, type, msg, hash) {
+  r.history.unshift({ type, msg, hash: hash?.slice(0, 8) || '—', time: Date.now() });
+  if (r.history.length > 150) r.history.length = 150;
 }
 
 // ── Alerts ──────────────────────────────────────────────
-function triggerAlerts(msg) {
-  playAlert();
-  sendNotification('Web Watcher', msg);
+let audioCtx;
+function playBeep() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const now = audioCtx.currentTime;
+    [880, 1100, 1320].forEach((f, i) => {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.connect(g); g.connect(audioCtx.destination);
+      o.frequency.value = f; o.type = 'sine';
+      const t = now + i * 0.15;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.25, t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+      o.start(t); o.stop(t + 0.25);
+    });
+  } catch {}
+}
+
+let titleFlash;
+function flashTitle(msg) {
+  clearInterval(titleFlash);
+  let on = true;
+  titleFlash = setInterval(() => { document.title = (on = !on) ? 'Web Watcher' : `⚠ ${msg}`; }, 800);
+}
+function stopFlash() { clearInterval(titleFlash); document.title = 'Web Watcher'; }
+
+async function browserNotify(title, body) {
+  if (!('Notification' in window)) return;
+  if (Notification.permission === 'default') await Notification.requestPermission();
+  if (Notification.permission === 'granted') new Notification(title, { body });
+}
+
+async function sendEmailJS(to, subject, message) {
+  const { service, template, pubkey } = data.notif.ejs;
+  if (!service || !template || !pubkey) return;
+  await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ service_id: service, template_id: template, user_id: pubkey, template_params: { to_email: to, subject, message } }),
+  });
+}
+
+function smsAddress() {
+  const phone = (data.notif.phone || '').replace(/\D/g, '');
+  const gateway = data.notif.carrier === 'custom' ? data.notif.customGateway : data.notif.carrier;
+  return phone && gateway ? `${phone}@${gateway}` : '';
+}
+
+async function fireAlerts(watch, msg, r) {
+  const label = watch.name || watch.url;
+  playBeep();
   flashTitle('CHANGE DETECTED');
-  showAlert('change', `🔔 ${msg}`, true);
-}
+  browserNotify('Web Watcher', `${label}: ${msg}`);
 
-function showAlert(type, msg, showDiff) {
-  el.alertBanner.className = `alert-banner show ${type}`;
-  el.alertMsg.textContent = msg;
-  if (showDiff && state.prevContent) {
-    el.alertMsg.innerHTML = msg + ' <a href="#" id="view-diff" style="margin-left:8px">View diff →</a>';
-    $('view-diff')?.addEventListener('click', e => { e.preventDefault(); openDiffModal(); });
+  if (selectedWatchId === watch.id) {
+    const banner = document.getElementById('alert-banner');
+    const amsg = document.getElementById('alert-msg');
+    banner.className = 'alert-banner show change';
+    amsg.innerHTML = `🔔 ${esc(label)}: ${esc(msg)} <a href="#" id="view-diff" style="margin-left:8px;color:inherit;text-decoration:underline">View diff</a>`;
+    document.getElementById('view-diff')?.addEventListener('click', e => { e.preventDefault(); openDiff(r); });
   }
-}
 
-// ── Diff modal ──────────────────────────────────────────
-let diffView = 'new';
-function openDiffModal() {
-  diffView = 'new';
-  updateDiffContent();
-  el.diffModal.classList.add('show');
-}
-function updateDiffContent() {
-  $('diff-tab-new').style.borderColor = diffView === 'new' ? 'var(--accent)' : '';
-  $('diff-tab-old').style.borderColor = diffView === 'old' ? 'var(--accent)' : '';
-  $('diff-tab-diff').style.borderColor = diffView === 'diff' ? 'var(--accent)' : '';
-
-  if (diffView === 'new') {
-    el.diffContent.textContent = state.lastContent || '(empty)';
-  } else if (diffView === 'old') {
-    el.diffContent.textContent = state.prevContent || '(empty)';
-  } else {
-    el.diffContent.innerHTML = simpleDiff(state.prevContent || '', state.lastContent || '');
-  }
-}
-function simpleDiff(oldText, newText) {
-  const oldLines = oldText.split(/(?<=\. )|(?<=\n)/);
-  const newLines = newText.split(/(?<=\. )|(?<=\n)/);
-  const oldSet = new Set(oldLines);
-  const newSet = new Set(newLines);
-  let html = '';
-  const seen = new Set();
-  for (const line of newLines) {
-    if (!oldSet.has(line)) {
-      html += `<span class="diff-added">+ ${esc(line)}</span>\n`;
-    } else {
-      html += `  ${esc(line)}\n`;
+  try {
+    if (data.notif.emailOn && data.notif.email) {
+      await sendEmailJS(data.notif.email, `Web Watcher: ${label}`, `Change detected on ${label}\n\nURL: ${watch.url}\nTime: ${new Date().toLocaleString()}\nDetail: ${msg}`);
     }
-    seen.add(line);
-  }
-  for (const line of oldLines) {
-    if (!newSet.has(line) && !seen.has(line)) {
-      html += `<span class="diff-removed">- ${esc(line)}</span>\n`;
+  } catch {}
+  try {
+    const sms = smsAddress();
+    if (data.notif.smsOn && sms) {
+      await sendEmailJS(sms, `WebWatcher`, `${label}: ${msg}`);
     }
-  }
-  return html || '(no textual difference detected)';
-}
-function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
-// ── UI updates ──────────────────────────────────────────
-function setStatus(status, text) {
-  el.statusBar.style.display = 'flex';
-  el.statusDot.className = `status-dot ${status}`;
-  el.statusText.textContent = text;
+  } catch {}
 }
 
-function updateStats() {
-  el.statsBar.style.display = 'flex';
-  el.statChecks.textContent = state.checks;
-  el.statChanges.textContent = state.changes;
-  el.statErrors.textContent = state.errors;
-  if (state.startedAt) {
-    const secs = Math.floor((Date.now() - state.startedAt) / 1000);
-    if (secs < 60) el.statUptime.textContent = `${secs}s`;
-    else if (secs < 3600) el.statUptime.textContent = `${Math.floor(secs / 60)}m`;
-    else el.statUptime.textContent = `${Math.floor(secs / 3600)}h ${Math.floor((secs % 3600) / 60)}m`;
-  }
+// ── Watch CRUD ──────────────────────────────────────────
+let selectedWatchId = null;
+let editingWatchId = null;
+
+function addWatch(cfg) {
+  const w = { id: genId(), name: cfg.name || '', url: cfg.url, interval: cfg.interval || 30, mode: cfg.mode || 'text', keywords: cfg.keywords || '', selector: cfg.selector || '', proxyChoice: cfg.proxyChoice || 'auto' };
+  data.watches.push(w);
+  save();
+  renderAll();
+  return w;
 }
 
-function showProxyStatus(key, status) {
-  el.proxyStatus.style.display = 'flex';
-  el.proxyDot.className = `dot ${status === 'ok' ? 'ok' : status === 'fail' ? 'fail' : 'trying'}`;
-  const name = PROXIES[key]?.name || key;
-  const label = status === 'ok' ? `Using ${name}` : status === 'fail' ? `${name} failed` : `Trying ${name}…`;
-  el.proxyLabel.textContent = label;
+function updateWatch(id, cfg) {
+  const w = data.watches.find(w => w.id === id);
+  if (!w) return;
+  const wasRunning = getRT(id).running;
+  if (wasRunning) stopWatch(id);
+  Object.assign(w, cfg);
+  save();
+  if (wasRunning) startWatch(id);
+  renderAll();
 }
 
-function addHistory(type, msg, hash) {
-  const entry = { type, msg, hash: hash?.slice(0, 8) || '—', time: Date.now() };
-  state.history.unshift(entry);
-  if (state.history.length > 200) state.history.length = 200;
-  renderHistory();
+function deleteWatch(id) {
+  stopWatch(id);
+  data.watches = data.watches.filter(w => w.id !== id);
+  rt.delete(id);
+  if (selectedWatchId === id) selectedWatchId = null;
+  save();
+  renderAll();
 }
 
-function renderHistory() {
-  el.historyCard.style.display = 'block';
-  if (!state.history.length) {
-    el.historyList.innerHTML = '<div class="empty-state">No checks yet</div>';
-    return;
-  }
-  const icons = { baseline: '📌', ok: '✓', changed: '🔔', error: '⚠' };
-  el.historyList.innerHTML = state.history.slice(0, 100).map(e => {
-    const t = new Date(e.time).toLocaleTimeString();
-    const cls = e.type === 'changed' ? ' changed' : e.type === 'error' ? ' error' : '';
-    return `<div class="history-entry${cls}">
-      <span class="time">${t}</span>
-      <span class="icon">${icons[e.type] || '·'}</span>
-      <span class="msg">${esc(e.msg)}</span>
-      <span class="hash">${e.hash}</span>
+function startWatch(id) {
+  const w = data.watches.find(w => w.id === id);
+  if (!w) return;
+  const r = getRT(id);
+  r.running = true;
+  r.lastHash = null; r.lastContent = null; r.prevContent = null;
+  r.checks = 0; r.changes = 0; r.errors = 0; r.consErrors = 0;
+  r.history = []; r.startedAt = Date.now(); r.workingProxy = null;
+  if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
+  worker.postMessage({ cmd: 'start', id, ms: w.interval * 1000 });
+  runCheck(id);
+  renderAll();
+}
+
+function stopWatch(id) {
+  const r = getRT(id);
+  r.running = false;
+  worker.postMessage({ cmd: 'stop', id });
+  stopFlash();
+  renderAll();
+}
+
+// ── UI Rendering ────────────────────────────────────────
+const icons = { baseline: '📌', ok: '✓', changed: '🔔', error: '⚠' };
+
+function renderAll() {
+  renderWatchList();
+  renderDetail();
+}
+
+function renderWatchList() {
+  const el = document.getElementById('watch-list');
+  if (!data.watches.length) { el.innerHTML = '<div class="empty-state">No watches yet — click "+ Add Watch" to start</div>'; return; }
+  el.innerHTML = data.watches.map(w => {
+    const r = getRT(w.id);
+    const sel = w.id === selectedWatchId;
+    const dot = r.running ? (r.consErrors >= 5 ? 'error' : (r.changes > 0 ? 'changed' : 'running')) : 'idle';
+    const proxyName = r.workingProxy ? PROXIES[r.workingProxy]?.name || '' : '';
+    return `<div class="watch-card${sel ? ' selected' : ''}" data-id="${w.id}">
+      <div class="watch-top">
+        <div class="watch-dot ${dot}"></div>
+        <div class="watch-info" data-action="select" data-id="${w.id}">
+          <div class="watch-name">${esc(w.name || truncUrl(w.url, 45))}</div>
+          <div class="watch-url">${esc(truncUrl(w.url))}</div>
+        </div>
+        <div class="watch-actions">
+          <button class="btn btn-sm ${r.running ? 'btn-danger' : 'btn-primary'}" data-action="toggle" data-id="${w.id}">${r.running ? '■ Stop' : '▶ Start'}</button>
+          <button class="btn btn-sm btn-ghost" data-action="edit" data-id="${w.id}">✎</button>
+          <button class="btn btn-sm btn-ghost" data-action="delete" data-id="${w.id}">🗑</button>
+        </div>
+      </div>
+      <div class="watch-meta">
+        <span>Every ${fmtInterval(w.interval)}</span>
+        <span>${w.mode} mode</span>
+        ${r.checks ? `<span>${r.checks} checks</span>` : ''}
+        ${r.changes ? `<span style="color:var(--danger)">${r.changes} changes</span>` : ''}
+        ${proxyName ? `<span>via ${proxyName}</span>` : ''}
+      </div>
     </div>`;
   }).join('');
 }
 
-function updateCountdown() {
-  if (!state.running) { el.countdown.textContent = ''; return; }
-  const elapsed = Date.now() - lastCheckTime;
-  const remaining = Math.max(0, Math.ceil((state.interval * 1000 - elapsed) / 1000));
-  el.countdown.textContent = `${remaining}s`;
-  countdownRaf = requestAnimationFrame(updateCountdown);
-}
-
-// ── Start / Stop ────────────────────────────────────────
-function start() {
-  const url = el.url.value.trim();
-  if (!url) { el.url.focus(); return; }
-  try { new URL(url); } catch { el.url.focus(); return; }
-
-  readFormState();
-  state.url = url;
-  state.running = true;
-  state.lastHash = null;
-  state.lastContent = null;
-  state.prevContent = null;
-  state.checks = 0;
-  state.changes = 0;
-  state.errors = 0;
-  state.consecutiveErrors = 0;
-  state.history = [];
-  state.startedAt = Date.now();
-  state.workingProxy = null;
-
-  el.startBtn.className = 'btn btn-danger full-width';
-  el.startIcon.textContent = '■';
-  el.startText.textContent = 'Stop Monitoring';
-  stopTitleFlash();
-
-  if ('Notification' in window && Notification.permission === 'default') {
-    Notification.requestPermission();
-  }
-
-  if (!timerWorker) createTimerWorker();
-  runCheck();
-  timerWorker.postMessage({ cmd: 'start', ms: state.interval * 1000 });
-  countdownRaf = requestAnimationFrame(updateCountdown);
-
-  saveState();
-}
-
-function stop() {
-  state.running = false;
-  if (timerWorker) timerWorker.postMessage({ cmd: 'stop' });
-  cancelAnimationFrame(countdownRaf);
-  stopTitleFlash();
-
-  el.startBtn.className = 'btn btn-primary full-width';
-  el.startIcon.textContent = '▶';
-  el.startText.textContent = 'Start Monitoring';
-  setStatus('idle', 'Stopped');
-  el.countdown.textContent = '';
-
-  saveState();
-}
-
-function readFormState() {
-  state.mode = el.modeSel.value;
-  state.keywords = el.keywordInput.value;
-  state.selector = el.selectorInput.value;
-  state.proxyChoice = el.proxySel.value;
-  if (el.intervalSel.value === 'custom') {
-    state.interval = Math.max(5, parseInt(el.customInterval.value) || 30);
+function renderDetail() {
+  const sec = document.getElementById('detail-section');
+  if (!selectedWatchId) { sec.style.display = 'none'; return; }
+  sec.style.display = '';
+  const r = getRT(selectedWatchId);
+  document.getElementById('s-checks').textContent = r.checks;
+  document.getElementById('s-changes').textContent = r.changes;
+  document.getElementById('s-errors').textContent = r.errors;
+  if (r.startedAt) {
+    const s = Math.floor((Date.now() - r.startedAt) / 1000);
+    document.getElementById('s-uptime').textContent = s < 60 ? s + 's' : s < 3600 ? Math.floor(s / 60) + 'm' : `${Math.floor(s / 3600)}h${Math.floor((s % 3600) / 60)}m`;
   } else {
-    state.interval = parseInt(el.intervalSel.value);
+    document.getElementById('s-uptime').textContent = '—';
+  }
+  const hl = document.getElementById('history-list');
+  if (!r.history.length) { hl.innerHTML = '<div class="empty-state">No checks yet</div>'; return; }
+  hl.innerHTML = r.history.slice(0, 80).map(e => {
+    const t = new Date(e.time).toLocaleTimeString();
+    const cls = e.type === 'changed' ? ' changed' : e.type === 'error' ? ' error' : '';
+    return `<div class="history-entry${cls}"><span class="time">${t}</span><span class="icon">${icons[e.type] || '·'}</span><span class="msg" title="${esc(e.msg)}">${esc(e.msg)}</span><span class="hash">${e.hash}</span></div>`;
+  }).join('');
+}
+
+// ── Diff modal ──────────────────────────────────────────
+let diffRT = null, diffView = 'new';
+function openDiff(r) {
+  diffRT = r; diffView = 'new'; updateDiff();
+  document.getElementById('diff-modal').classList.add('show');
+}
+function updateDiff() {
+  if (!diffRT) return;
+  document.querySelectorAll('[data-diff]').forEach(b => b.style.borderColor = b.dataset.diff === diffView ? 'var(--accent)' : '');
+  const el = document.getElementById('diff-content');
+  if (diffView === 'new') el.textContent = diffRT.lastContent || '(empty)';
+  else if (diffView === 'old') el.textContent = diffRT.prevContent || '(empty)';
+  else {
+    const oldL = (diffRT.prevContent || '').split(/(?<=\. )|(?<=\n)/);
+    const newL = (diffRT.lastContent || '').split(/(?<=\. )|(?<=\n)/);
+    const oldS = new Set(oldL), newS = new Set(newL);
+    let html = newL.map(l => oldS.has(l) ? `  ${esc(l)}` : `<span class="diff-added">+ ${esc(l)}</span>`).join('\n');
+    oldL.filter(l => !newS.has(l)).forEach(l => { html += `\n<span class="diff-removed">- ${esc(l)}</span>`; });
+    el.innerHTML = html || '(no diff)';
   }
 }
 
-// ── Persistence ─────────────────────────────────────────
-const STORAGE_KEY = 'web-watcher-state';
-function saveState() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      url: state.url, interval: state.interval, mode: state.mode,
-      keywords: state.keywords, selector: state.selector, proxyChoice: state.proxyChoice,
-    }));
-  } catch {}
+// ── Watch modal ─────────────────────────────────────────
+function openWatchModal(watchId) {
+  editingWatchId = watchId;
+  const m = document.getElementById('watch-modal');
+  document.getElementById('watch-modal-title').textContent = watchId ? 'Edit Watch' : 'Add Watch';
+  document.getElementById('wm-save').textContent = watchId ? 'Save' : 'Add Watch';
+  if (watchId) {
+    const w = data.watches.find(w => w.id === watchId);
+    if (!w) return;
+    document.getElementById('wm-name').value = w.name;
+    document.getElementById('wm-url').value = w.url;
+    document.getElementById('wm-interval').value = String(w.interval);
+    document.getElementById('wm-mode').value = w.mode;
+    document.getElementById('wm-keywords').value = w.keywords;
+    document.getElementById('wm-selector').value = w.selector;
+    document.getElementById('wm-proxy').value = w.proxyChoice;
+  } else {
+    document.getElementById('wm-name').value = '';
+    document.getElementById('wm-url').value = '';
+    document.getElementById('wm-interval').value = '30';
+    document.getElementById('wm-mode').value = 'text';
+    document.getElementById('wm-keywords').value = '';
+    document.getElementById('wm-selector').value = '';
+    document.getElementById('wm-proxy').value = 'auto';
+  }
+  toggleKwWrap();
+  m.classList.add('show');
+  if (!watchId) document.getElementById('wm-url').focus();
 }
-function loadState() {
+
+function toggleKwWrap() {
+  document.getElementById('wm-kw-wrap').style.display = document.getElementById('wm-mode').value === 'keyword' ? '' : 'none';
+}
+
+function saveWatchModal() {
+  const url = document.getElementById('wm-url').value.trim();
+  if (!url) { document.getElementById('wm-url').focus(); return; }
+  try { new URL(url); } catch { document.getElementById('wm-url').focus(); return; }
+  const cfg = {
+    name: document.getElementById('wm-name').value.trim(),
+    url,
+    interval: parseInt(document.getElementById('wm-interval').value) || 30,
+    mode: document.getElementById('wm-mode').value,
+    keywords: document.getElementById('wm-keywords').value,
+    selector: document.getElementById('wm-selector').value.trim(),
+    proxyChoice: document.getElementById('wm-proxy').value,
+  };
+  if (editingWatchId) updateWatch(editingWatchId, cfg);
+  else { const w = addWatch(cfg); selectedWatchId = w.id; }
+  document.getElementById('watch-modal').classList.remove('show');
+  renderAll();
+}
+
+// ── Notification settings ───────────────────────────────
+function loadNotifUI() {
+  document.getElementById('notif-email-on').checked = data.notif.emailOn;
+  document.getElementById('notif-sms-on').checked = data.notif.smsOn;
+  document.getElementById('notif-email').value = data.notif.email;
+  document.getElementById('notif-phone').value = data.notif.phone;
+  document.getElementById('notif-carrier').value = data.notif.carrier;
+  document.getElementById('notif-custom-gateway').value = data.notif.customGateway;
+  document.getElementById('ejs-service').value = data.notif.ejs.service;
+  document.getElementById('ejs-template').value = data.notif.ejs.template;
+  document.getElementById('ejs-pubkey').value = data.notif.ejs.pubkey;
+  toggleCustomGateway();
+}
+
+function saveNotif() {
+  data.notif.emailOn = document.getElementById('notif-email-on').checked;
+  data.notif.smsOn = document.getElementById('notif-sms-on').checked;
+  data.notif.email = document.getElementById('notif-email').value.trim();
+  data.notif.phone = document.getElementById('notif-phone').value.trim();
+  data.notif.carrier = document.getElementById('notif-carrier').value;
+  data.notif.customGateway = document.getElementById('notif-custom-gateway').value.trim();
+  data.notif.ejs.service = document.getElementById('ejs-service').value.trim();
+  data.notif.ejs.template = document.getElementById('ejs-template').value.trim();
+  data.notif.ejs.pubkey = document.getElementById('ejs-pubkey').value.trim();
+  save();
+  showNotifMsg('Saved!');
+}
+
+function toggleCustomGateway() {
+  document.getElementById('custom-gateway-wrap').style.display = document.getElementById('notif-carrier').value === 'custom' ? '' : 'none';
+}
+
+async function testNotif() {
+  saveNotif();
+  const missing = [];
+  if (!data.notif.ejs.service || !data.notif.ejs.template || !data.notif.ejs.pubkey) missing.push('EmailJS credentials');
+  if (data.notif.emailOn && !data.notif.email) missing.push('email address');
+  if (data.notif.smsOn && !smsAddress()) missing.push('phone/carrier');
+  if (missing.length) { showNotifMsg('Missing: ' + missing.join(', ')); return; }
+  showNotifMsg('Sending…');
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (!saved) return;
-    if (saved.url) el.url.value = saved.url;
-    if (saved.interval) {
-      const opt = el.intervalSel.querySelector(`option[value="${saved.interval}"]`);
-      if (opt) { el.intervalSel.value = saved.interval; }
-      else { el.intervalSel.value = 'custom'; el.customInterval.value = saved.interval; el.customWrap.style.display = ''; }
-    }
-    if (saved.mode) el.modeSel.value = saved.mode;
-    if (saved.keywords) el.keywordInput.value = saved.keywords;
-    if (saved.selector) el.selectorInput.value = saved.selector;
-    if (saved.proxyChoice) el.proxySel.value = saved.proxyChoice;
-    toggleKeywordWrap();
-  } catch {}
+    if (data.notif.emailOn && data.notif.email) await sendEmailJS(data.notif.email, 'Web Watcher Test', 'This is a test notification from Web Watcher.');
+    const sms = smsAddress();
+    if (data.notif.smsOn && sms) await sendEmailJS(sms, 'WebWatcher Test', 'Test from Web Watcher');
+    showNotifMsg('Sent!');
+  } catch (e) { showNotifMsg('Error: ' + e.message); }
+}
+
+function showNotifMsg(msg) {
+  const el = document.getElementById('notif-msg');
+  el.textContent = msg;
+  setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 4000);
 }
 
 // ── Event wiring ────────────────────────────────────────
-function toggleKeywordWrap() {
-  el.keywordWrap.style.display = el.modeSel.value === 'keyword' ? '' : 'none';
-}
+document.getElementById('watch-list').addEventListener('click', e => {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) {
+    const card = e.target.closest('.watch-card');
+    if (card) { selectedWatchId = card.dataset.id; stopFlash(); renderAll(); }
+    return;
+  }
+  const id = btn.dataset.id, action = btn.dataset.action;
+  if (action === 'toggle') { getRT(id).running ? stopWatch(id) : startWatch(id); }
+  if (action === 'edit') openWatchModal(id);
+  if (action === 'delete') { if (confirm('Delete this watch?')) deleteWatch(id); }
+  if (action === 'select') { selectedWatchId = id; stopFlash(); renderAll(); }
+});
 
-el.startBtn.addEventListener('click', () => state.running ? stop() : start());
-el.intervalSel.addEventListener('change', () => {
-  el.customWrap.style.display = el.intervalSel.value === 'custom' ? '' : 'none';
-});
-el.modeSel.addEventListener('change', toggleKeywordWrap);
-el.alertDismiss.addEventListener('click', () => {
-  el.alertBanner.classList.remove('show');
-  stopTitleFlash();
-});
-el.clearHistoryBtn.addEventListener('click', () => {
-  state.history = [];
-  renderHistory();
-});
-el.diffClose.addEventListener('click', () => el.diffModal.classList.remove('show'));
-el.diffModal.addEventListener('click', e => { if (e.target === el.diffModal) el.diffModal.classList.remove('show'); });
-$('diff-tab-new').addEventListener('click', () => { diffView = 'new'; updateDiffContent(); });
-$('diff-tab-old').addEventListener('click', () => { diffView = 'old'; updateDiffContent(); });
-$('diff-tab-diff').addEventListener('click', () => { diffView = 'diff'; updateDiffContent(); });
-el.url.addEventListener('keydown', e => { if (e.key === 'Enter' && !state.running) start(); });
+document.getElementById('add-watch-btn').addEventListener('click', () => openWatchModal(null));
+document.getElementById('wm-close').addEventListener('click', () => document.getElementById('watch-modal').classList.remove('show'));
+document.getElementById('wm-cancel').addEventListener('click', () => document.getElementById('watch-modal').classList.remove('show'));
+document.getElementById('wm-save').addEventListener('click', saveWatchModal);
+document.getElementById('wm-mode').addEventListener('change', toggleKwWrap);
+document.getElementById('wm-url').addEventListener('keydown', e => { if (e.key === 'Enter') saveWatchModal(); });
+
+document.getElementById('diff-close').addEventListener('click', () => document.getElementById('diff-modal').classList.remove('show'));
+document.getElementById('diff-modal').addEventListener('click', e => { if (e.target.id === 'diff-modal') e.target.classList.remove('show'); });
+document.querySelectorAll('[data-diff]').forEach(b => b.addEventListener('click', () => { diffView = b.dataset.diff; updateDiff(); }));
+
+document.getElementById('alert-dismiss').addEventListener('click', () => { document.getElementById('alert-banner').classList.remove('show'); stopFlash(); });
+document.getElementById('clear-history-btn').addEventListener('click', () => { if (selectedWatchId) { getRT(selectedWatchId).history = []; renderDetail(); } });
+
+document.getElementById('notif-save-btn').addEventListener('click', saveNotif);
+document.getElementById('notif-test-btn').addEventListener('click', testNotif);
+document.getElementById('notif-carrier').addEventListener('change', toggleCustomGateway);
+
+document.getElementById('watch-modal').addEventListener('click', e => { if (e.target.id === 'watch-modal') e.target.classList.remove('show'); });
+
+// Uptime counter refresh
+setInterval(() => { if (selectedWatchId && getRT(selectedWatchId).running) renderDetail(); }, 1000);
 
 // ── Init ────────────────────────────────────────────────
-loadState();
+load();
+loadNotifUI();
+renderAll();
 </script>
 </body>
 </html>
