@@ -190,7 +190,7 @@ details[open] summary{margin-bottom:10px}
           <div><input type="tel" id="notif-phone" placeholder="4155551234"></div>
           <div>
             <select id="notif-carrier">
-              <option value="txt.att.net">AT&T</option>
+              <option value="mms.att.net">AT&T</option>
               <option value="tmomail.net">T-Mobile</option>
               <option value="vtext.com">Verizon</option>
               <option value="messaging.sprintpcs.com">Sprint</option>
@@ -201,7 +201,7 @@ details[open] summary{margin-bottom:10px}
         </div>
         <div id="custom-gateway-wrap" style="display:none;margin-bottom:14px">
           <label for="notif-custom-gateway">Custom SMS gateway domain</label>
-          <input type="text" id="notif-custom-gateway" placeholder="txt.att.net">
+          <input type="text" id="notif-custom-gateway" placeholder="mms.att.net">
         </div>
         <details style="margin-bottom:14px">
           <summary>EmailJS setup (required for email/SMS)</summary>
@@ -369,7 +369,7 @@ const PROXY_ORDER = ['jina', 'allorigins', 'corsproxy', 'direct'];
 
 // ── Data (persisted) ─────────────────────────────────────
 const STORE_KEY = 'webwatcher';
-let data = { watches: [], notif: { emailOn: false, smsOn: false, email: '', phone: '4154252515', carrier: 'txt.att.net', customGateway: '', ejs: { service: '', template: '', pubkey: '' } } };
+let data = { watches: [], notif: { emailOn: false, smsOn: false, email: '', phone: '4154252515', carrier: 'mms.att.net', customGateway: '', ejs: { service: '', template: '', pubkey: '' } } };
 
 function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch {} }
 function load() {
@@ -687,6 +687,7 @@ function deleteWatch(id) {
 function startWatch(id) {
   const w = data.watches.find(w => w.id === id);
   if (!w) return;
+  w.active = true; save();
   const r = getRT(id);
   r.running = true;
   r.lastHash = null; r.lastContent = null; r.prevContent = null;
@@ -699,6 +700,8 @@ function startWatch(id) {
 }
 
 function stopWatch(id) {
+  const w = data.watches.find(w => w.id === id);
+  if (w) { w.active = false; save(); }
   const r = getRT(id);
   r.running = false;
   worker.postMessage({ cmd: 'stop', id });
@@ -958,7 +961,11 @@ load();
 loadNotifUI();
 document.getElementById('gh-pat').value = ghPAT;
 renderAll();
-if (ghPAT) ghLoad().then(ok => { if (ok) { loadNotifUI(); renderAll(); } });
+if (ghPAT) ghLoad().then(ok => { if (ok) { loadNotifUI(); renderAll(); autoStart(); } else { autoStart(); } }); else { autoStart(); }
+
+function autoStart() {
+  data.watches.filter(w => w.active).forEach(w => startWatch(w.id));
+}
 </script>
 </body>
 </html>
